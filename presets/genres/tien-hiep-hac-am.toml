@@ -1,0 +1,33 @@
+# Preset thể loại: tạo một lần, dùng cho mọi bộ truyện cùng thể loại. Thêm thể loại mới = sao chép file này.
+# Ảnh nền và nhạc nền để ở <media_root>\content\assets\<id>\images và \bgm (xem `vnc story` in ra đường dẫn).
+
+id    = "tien-hiep-hac-am"
+title = "Tiên hiệp hắc ám"
+
+[voice]
+style     = "sach-noi"      # nhóm giọng của vndub (xem: vndub style). truyen-ma = một giọng kể trầm, chậm
+speed     = 0.98
+one_voice = false           # true: một người kể đọc cả lời thoại
+
+[text]
+# Từ điển phát âm/chuẩn Canon: viết lại tên riêng trước khi đọc. "chữ gốc" = "chữ đọc"
+lexicon = {}
+
+[visual]
+scene_seconds = 25          # mỗi ảnh hiện bấy nhiêu giây (hơn 30 s dễ thành "ảnh tĩnh đơn điệu")
+zoom_max      = 1.12        # độ phóng tối đa của hiệu ứng zoom chậm
+
+[audio]
+bgm_volume = 0.18
+lufs       = -16
+
+[meta]
+hashtags    = ["#truyenaudio", "#tienhiep", "#truyendemkhuya"]
+ai_note     = "Giọng đọc được tổng hợp bằng AI."
+desc_footer = ""
+# Gợi ý cho người/agent viết câu mở đầu 5 giây (đưa vào `vnc story --hook`):
+hook_prompt = "Chọn tình huống sinh tử căng nhất của tập, viết đúng 2 câu dưới 45 chữ, nhịp dồn nén, không sáo ngữ."
+
+[safety]
+# Cụm từ có nguy cơ bị gắn nhãn không phù hợp quảng cáo. CHỈ báo trong source/safety.txt để bạn duyệt, không tự sửa chữ.
+flag = ["máu tươi bắn tung tóe", "chặt đứt đầu", "ruột gan phơi bày", "xác chết la liệt"]

@@ -1,0 +1,12 @@
+# Repo bên thứ ba: bootstrap tự clone theo vendor.toml
+vendor/*
+!vendor/.gitkeep
+
+# Môi trường + dữ liệu + bí mật (cookie đăng nhập mạng xã hội, khoá API)
+.venv/
+config.toml
+data/
+.env
+*.egg-info/
+__pycache__/
+.pytest_cache/

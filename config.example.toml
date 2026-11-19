@@ -1,0 +1,64 @@
+# Sao chép thành config.toml rồi chỉnh. Khoá API (GEMINI_API_KEY...) để trong .env của vndub, KHÔNG để ở đây.
+
+[paths]
+# Dữ liệu nặng (video tải về, bản lồng tiếng, clip dựng, state.db). Trống = biến VNDUB_MEDIA, rồi ./data.
+# Quy ước máy này: C: chỉ cài đặt hệ thống/ứng dụng, dữ liệu sang SSD ngoài D:.
+media_root = 'D:\vndub-media'
+
+[tools]
+vndub_python = 'C:\ttsref\venv\Scripts\python.exe'   # Python có cài vndub (torch cu128, vieneu, demucs...)
+vndub_dir    = 'D:\vndub\vndub'                      # chạy vndub ở đây để nó đọc .env (khoá Gemini)
+ffmpeg       = "ffmpeg"
+ffprobe      = "ffprobe"
+vndub_env    = { HF_HOME = 'C:\ttsref\hf' }          # biến môi trường truyền cho vndub (model Hugging Face)
+sau          = ""     # trống = vendor/social-auto-upload/.venv/Scripts/sau.exe
+
+[ingest]
+format         = "bv*[height<=1080]+ba/b[height<=1080]"
+sub_langs      = ["vi", "en"]   # ưu tiên phụ đề CÓ SẴN do người làm video; vi trước thì khỏi dịch
+use_auto_subs  = false          # phụ đề tự động của YouTube hay lặp chữ — mặc định không dùng
+                                # (không có phụ đề thì dùng `dub-video`: Gemini tự chép lời + dịch)
+
+[dub]
+target     = "tiếng Việt"
+target_lang = "vi"
+extra_args = []                 # ví dụ ["--agents", "3", "--orig-volume", "0.1"]
+
+[render]
+width        = 1080
+height       = 1920
+mode         = "blur"           # blur: nền mờ + video giữa · crop: cắt giữa lấp đầy khung
+max_seconds  = 59               # mỗi clip tối đa (Shorts/Reels/TikTok)
+burn_subs    = true
+encoder      = "libx264"        # hoặc "h264_nvenc" (RTX 5060 có sẵn)
+crf          = 20
+
+[story]                         # chế độ truyện audio: `vnc story <chương...>` (xem README)
+preset            = "tien-hiep-hac-am"   # thể loại mặc định = tên file trong presets/genres/
+presets_dir       = ""                   # trống = <repo>/presets/genres
+width             = 1920                 # video dài ngang 16:9
+height            = 1080
+fps               = 25
+chapter_gap       = "[nghỉ 1s]"          # thẻ nghỉ của vndub chèn giữa hook / tóm tắt / các chương
+speak_args        = []                   # cờ thêm cho `vndub speak`, ví dụ ["--polish"] hoặc ["--direct"] (cần Gemini)
+midroll_minutes   = 10                   # điểm đặt quảng cáo giữa video mỗi ~10 phút, dời tới cuối một câu
+short_seconds     = 59                   # bản dọc cliffhanger dài tối đa
+short_end_fraction = 0.9                 # kết bản dọc ở cuối một câu gần 90% tập (đổi bằng --short-end)
+encoder           = "libx264"            # hoặc "h264_nvenc"
+crf               = 21
+cleanup_scenes    = true                 # xoá các cảnh dựng tạm sau khi ghép xong
+
+[meta]
+hashtags = ["#shorts"]
+credit   = true                 # ghi nguồn + ghi chú quyền sử dụng vào mô tả
+
+[publish]
+platforms      = ["youtube"]    # youtube | facebook | instagram (TikTok chưa có CLI trong social-auto-upload)
+visibility     = "private"      # youtube: private/unlisted/public — mặc định riêng tư cho an toàn
+interval_hours = 6              # nếu có --start: các clip cách nhau chừng này giờ
+headless       = true
+
+[publish.accounts]              # tên tài khoản đã `vnc login <nền tảng> <tên>`
+youtube   = "main"
+facebook  = "main"
+instagram = "main"

@@ -1,0 +1,27 @@
+id    = "linh-di-dan-gian"
+title = "Linh dị dân gian"
+
+[voice]
+style     = "truyen-ma"     # MỘT giọng kể nam trầm, chậm, ngắt nghỉ nhiều (đọc luôn lời thoại)
+speed     = 0.95
+one_voice = true
+
+[text]
+lexicon = {}
+
+[visual]
+scene_seconds = 30
+zoom_max      = 1.10
+
+[audio]
+bgm_volume = 0.15
+lufs       = -16
+
+[meta]
+hashtags    = ["#truyenma", "#linhdi", "#truyendemkhuya"]
+ai_note     = "Giọng đọc được tổng hợp bằng AI."
+desc_footer = ""
+hook_prompt = "Mở bằng một chi tiết rùng rợn cụ thể nhất của tập, tối đa 2 câu, không giải thích."
+
+[safety]
+flag = ["máu tươi bắn tung tóe", "chặt đứt đầu", "ruột gan phơi bày", "xác chết la liệt"]

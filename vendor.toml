@@ -1,0 +1,37 @@
+# Các repo bên ngoài ghép vào pipeline. `scripts/bootstrap.ps1` đọc file này, clone vào vendor/<name>.
+# ref = nhánh hoặc commit cố định (ghim commit để pipeline không vỡ khi upstream đổi).
+
+[social-auto-upload]
+url = "https://github.com/dreammis/social-auto-upload"
+ref = "3847fff01f5434a8a32829833163cd6723cabc59"
+enabled = true
+role = "publish"        # lệnh `sau` — đăng video lên YouTube / Facebook / Instagram / Douyin / Bilibili... bằng trình duyệt tự động
+python = ">=3.10,<3.13"
+
+# --- Tuỳ chọn (không clone mặc định) ---------------------------------------------------------
+[postiz-app]
+url = "https://github.com/gitroomhq/postiz-app"
+ref = "main"
+enabled = false
+role = "publish-ui"     # thay cho sau nếu muốn giao diện web lên lịch nhiều mạng (docker, AGPL-3.0)
+
+[openshorts]
+url = "https://github.com/mutonby/openshorts"
+ref = "main"
+enabled = false
+role = "clip"           # cắt clip hay từ video dài bằng AI (MIT); đang dùng ffmpeg đơn giản trong render
+
+[MoneyPrinterTurbo]
+url = "https://github.com/harry0703/MoneyPrinterTurbo"
+ref = "main"
+enabled = false
+role = "generate"       # tạo video từ chủ đề (kịch bản + giọng + phụ đề) — dùng khi làm nội dung gốc
+
+[KrillinAI]
+url = "https://github.com/krillinai/KrillinAI"
+ref = "master"
+enabled = false
+role = "dub-alt"        # phương án thay thế khâu dịch/lồng tiếng
+
+# Không nằm trong danh sách: vndub (lồng tiếng) là repo cục bộ, đặt đường dẫn ở config.toml [tools].vndub_dir;
+# yt-dlp cài như thư viện Python (pyproject.toml).

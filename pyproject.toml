@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vn-content"
+version = "0.1.0"
+description = "Pipeline nội dung video: tải -> lồng tiếng (vndub) -> dựng dọc -> đăng (social-auto-upload)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["yt-dlp>=2025.1.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+vnc = "vncontent.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["vncontent*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

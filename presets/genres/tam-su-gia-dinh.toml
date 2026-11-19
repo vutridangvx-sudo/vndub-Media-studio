@@ -1,0 +1,27 @@
+id    = "tam-su-gia-dinh"
+title = "Tâm sự hôn nhân gia đình"
+
+[voice]
+style     = "sach-noi"
+speed     = 1.0
+one_voice = false
+
+[text]
+lexicon = {}
+
+[visual]
+scene_seconds = 20
+zoom_max      = 1.08
+
+[audio]
+bgm_volume = 0.12
+lufs       = -16
+
+[meta]
+hashtags    = ["#tamsu", "#truyenaudio", "#giadinh"]
+ai_note     = "Giọng đọc được tổng hợp bằng AI. Câu chuyện mang tính tham khảo."
+desc_footer = ""
+hook_prompt = "Mở bằng khoảnh khắc mâu thuẫn bùng nổ nhất, 2 câu, giọng người trong cuộc."
+
+[safety]
+flag = []
